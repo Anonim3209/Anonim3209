@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Username: <span class="username"></span></h2>
+    <h2>Entered time: <span class="entered-time"></span></h2>
+    <h1>Тесты:</h1>
+    <div class="tests"></div>
+    <script type="module">
+      const testsList = document.querySelector(".tests");
+      const htmlUserName = document.querySelector(".username");
+      const enteredTime = document.querySelector(".entered-time");
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+
+      let ws = new WebSocket("wss://" + location.host);
+      let helper = { id, role: "helper", authenfication: false };
+      ws.onopen = () => {
+        console.log("Succesful connected!");
+        ws.send(JSON.stringify(helper));
+      };
+      ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        if (data.authenfication) {
+          helper = data;
+        }
+
+        if (data.html) {
+          testsList.innerHTML += data.html;
+          htmlUserName.textContent = data.username;
+          enteredTime.textContent = data.timeOfActivation;
+          const answerItems = testsList.querySelectorAll("li");
+
+          answerItems.forEach((el) => {
+            el.onclick = function () {
+              ws.send(
+                JSON.stringify({
+                  answer: `${el.parentNode.parentNode.parentNode.id.slice(
+                    3
+                  )}) ${el.querySelector("span").textContent}`,
+                  id,
+                })
+              );
+            };
+          });
+        }
+      };
+      ws.onclose = () => {
+        setTimeout(() => {
+          const newSocket = new WebSocket("wss://" + location.host);
+
+          newSocket.onopen = () => {
+            console.log("Соединение установлено");
+          };
+          newSocket.onmessage = ws.onmessage;
+          newSocket.onclose = ws.onclose;
+
+          ws = newSocket;
+        }, 1500);
+      };
+    </script>
+  </body>
+</html>
