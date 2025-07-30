@@ -1,6 +1,4 @@
-let ws = new WebSocket("wss://script-answers.onrender.com");
-let productUrl = "wss://script-answers.onrender.com";
-let localUrl = "ws://localhost:3000";
+let ws = new WebSocket("wss://wqqq.onrender.com");
 
 let user = { id: "{{ID}}", role: "client", authenfication: false };
 
