@@ -48,7 +48,7 @@ ws.onmessage = (event) => {
         //   height: "30px",
         padding: "2px",
         backgroundColor: "transparent",
-        color: "gray",
+        color: "rgba(128, 128, 128, 0.7)",
         // fontSize: "24px",
         textAlign: "center",
         // lineHeight: "40px",
