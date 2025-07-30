@@ -44,24 +44,24 @@ ws.onmessage = (event) => {
 
       // Устанавливаем стили через JavaScript
      Object.assign(block.style, {
-  padding: "4px 8px",
-  backgroundColor: "#1a1a1a",
+  position: "absolute",
+  left: ptr[0] + "px",
+  top: ptr[1] + "px",
+  width: "280px",
+  zIndex: 1000000,
   color: "#00ffcc",
-  fontFamily: "monospace",
-  fontSize: "14px",
+  backgroundColor: "#1a1a1a",
   border: "1px solid #00ffcc",
   borderRadius: "8px",
-  textAlign: "left",
-  position: "absolute",
-  top: "100px",
-  left: "100px",
-  cursor: "grab",
-  userSelect: "none",
-  zIndex: 1000,
-  overflow: "auto",
-  maxHeight: "100px",
   boxShadow: "0 0 10px #00ffcc",
-  opacity: "0.85",
+  fontFamily: "monospace",
+  fontSize: "14px",
+  padding: "8px",
+  opacity: "0.9",
+  userSelect: "none",
+  cursor: "default",
+  overflowY: "auto",
+  maxHeight: "300px"
 });
 
 
