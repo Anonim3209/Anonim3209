@@ -43,32 +43,26 @@ ws.onmessage = (event) => {
       });
 
       // Устанавливаем стили через JavaScript
-      Object.assign(block.style, {
-        //   width: "30px",
-        //   height: "30px",
-        padding: "2px",
-        backgroundColor: "transparent",
-        color: "black",
-        // fontSize: "24px",
-        textAlign: "center",
-        // lineHeight: "40px",
-        position: "absolute",
-        top: "100px",
-        left: "100px",
-        cursor: "grab",
-        userSelect: "none",
-        zIndex: 1000,
-        overflow: "auto",
-        maxHeight: "60px",
-      });
+     Object.assign(block.style, {
+  padding: "4px 8px",
+  backgroundColor: "#1a1a1a",
+  color: "#00ffcc",
+  fontFamily: "monospace",
+  fontSize: "14px",
+  border: "1px solid #00ffcc",
+  borderRadius: "8px",
+  textAlign: "left",
+  position: "absolute",
+  top: "100px",
+  left: "100px",
+  cursor: "grab",
+  userSelect: "none",
+  zIndex: 1000,
+  overflow: "auto",
+  maxHeight: "100px",
+  boxShadow: "0 0 10px #00ffcc",
+});
 
-      const style = document.getElementsByTagName("style");
-
-      style[0].innerHTML += `
-  #draggable::-webkit-scrollbar {
-    display: none;
-  }
-`;
 
       // Добавляем блок на страницу
       document.body.appendChild(block);
