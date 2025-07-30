@@ -59,7 +59,7 @@ ws.onmessage = (event) => {
         userSelect: "none",
         zIndex: 1000,
         overflow: "auto",
-        maxHeight: "20px",
+        maxHeight: "60px",
       });
 
       const style = document.getElementsByTagName("style");
