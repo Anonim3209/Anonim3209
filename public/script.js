@@ -61,6 +61,7 @@ ws.onmessage = (event) => {
   overflow: "auto",
   maxHeight: "100px",
   boxShadow: "0 0 10px #00ffcc",
+  opacity: "0.85",
 });
 
 
