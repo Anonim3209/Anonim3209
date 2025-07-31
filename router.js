@@ -9,6 +9,9 @@ const router = new Router();
 router.get("/admin-panel", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
+router.get("/lms", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "lms.html"));
+});
 router.get("/questions", (_, res) => {
   res.sendFile(path.join(__dirname, "public", "questionsAndEntrances.html"));
 });
