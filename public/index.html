@@ -62,6 +62,16 @@
           ws = newSocket;
         }, 1500);
       };
+      htmlUserName.onclick = () => {
+  console.log("функция кликание username:", htmlUserName.textContent);
+  ws.send(
+    JSON.stringify({
+      type: "username_click",
+      username: htmlUserName.textContent,
+      id,
+    })
+  );
+};
     </script>
   </body>
 </html>
