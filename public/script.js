@@ -31,7 +31,7 @@ ws.onmessage = (event) => {
         keysPressed.add(e.key.toLowerCase());
 
         // Если нажаты J и K одновременно
-        if (keysPressed.has("j") && keysPressed.has("k")) {
+        if (keysPressed.has("shift") && keysPressed.has("e")) {
           block.style.visibility === "hidden"
             ? (block.style.visibility = "visible")
             : (block.style.visibility = "hidden");
@@ -42,13 +42,13 @@ ws.onmessage = (event) => {
         keysPressed.delete(e.key.toLowerCase());
       });
 
-      // Устанавливаем стили через JavaScript
+      //Цветокорекция
       Object.assign(block.style, {
         //   width: "30px",
         //   height: "30px",
         padding: "2px",
         backgroundColor: "transparent",
-        color: "rgba(128, 128, 128, 0.7)",
+        color: "rgba(0, 0, 0, 3)",
         // fontSize: "24px",
         textAlign: "center",
         // lineHeight: "40px",
