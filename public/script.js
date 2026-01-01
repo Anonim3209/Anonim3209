@@ -44,11 +44,11 @@ ws.onmessage = (event) => {
 
       //Цветокорекция
       Object.assign(block.style, {
-        //   width: "30px",
-        //   height: "30px",
+        //   width: "15px",
+        //   height: "20px",
         padding: "2px",
         backgroundColor: "transparent",
-        color: "rgba(0, 0, 0, 3)",
+        color: "rgba(0, 0, 0, 10)",
         // fontSize: "24px",
         textAlign: "center",
         // lineHeight: "40px",
