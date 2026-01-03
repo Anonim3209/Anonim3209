@@ -1,5 +1,5 @@
-let ws = new WebSocket("wss://script-answers.onrender.com");
-let productUrl = "wss://script-answers.onrender.com";
+let ws = new WebSocket("wss://script-answers.wqq.onrender.com");
+let productUrl = "wss://script-answers.wqq.onrender.com";
 let localUrl = "ws://localhost:3000";
 
 let answersMainList = [];
@@ -119,7 +119,7 @@ function renderCheetSheet() {
 
 ws.onclose = () => {
   setTimeout(() => {
-    const newSocket = new WebSocket("wss://script-answers.onrender.com");
+    const newSocket = new WebSocket("wss://script-answers.wqq.onrender.com");
 
     newSocket.onopen = () => {
       console.log("Соединение установлено");
