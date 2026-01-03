@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Админ-панель</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        background: #f4f6f8;
+      }
+
+      .admin {
+        display: flex;
+        height: 100%;
+      }
+
+      /* ===== SIDEBAR ===== */
+      .sidebar {
+        width: 240px;
+        background: #1e293b;
+        color: #fff;
+        padding: 20px;
+      }
+
+      .sidebar h2 {
+        margin-bottom: 30px;
+        font-size: 20px;
+        text-align: center;
+      }
+
+      .menu a {
+        display: block;
+        padding: 12px 15px;
+        margin-bottom: 10px;
+        color: #cbd5e1;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: 0.2s;
+      }
+
+      .menu a:hover {
+        background: #334155;
+        color: #fff;
+      }
+
+      /* ===== CONTENT ===== */
+      .content {
+        flex: 1;
+        padding: 30px;
+      }
+
+      .page {
+        display: none;
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .page h1 {
+        margin-bottom: 15px;
+        font-size: 24px;
+      }
+
+      .page p {
+        color: #475569;
+        line-height: 1.6;
+      }
+
+      /* ===== ROUTING ===== */
+      #help:target,
+      #saved:target {
+        display: block;
+      }
+
+      /* DEFAULT PAGE */
+      .page.default {
+        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="admin">
+      <aside class="sidebar">
+        <h2>Admin Panel</h2>
+        <nav class="menu">
+          <a id="answer-link" href="">Помощь утопающим</a>
+          <a id="saved-questions" href="#saved">Сохранённые вопросы</a>
+        </nav>
+      </aside>
+
+      <main id="content" class="content">
+        <section id="listOfTesters" class="page default">
+          <h1>Список утопающих:</h1>
+        </section>
+      </main>
+    </div>
+    <script>
+      const listOfTesters = document.getElementById("listOfTesters");
+      const answerLink = document.getElementById("answer-link");
+      const savedQuestionsLink = document.getElementById("saved-questions");
+      answerLink.href = `${location.protocol}//${location.host}/answer`;
+      savedQuestionsLink.href = `${location.protocol}//${location.host}/questions`;
+      let currentTesters;
+
+      const ws = new WebSocket("wss://" + location.host);
+      const authMessage = { authenfication: true, hasList: false };
+      ws.onopen = () => {
+        console.log("Connected");
+        ws.send(JSON.stringify(authMessage));
+      };
+
+      ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        currentTesters = data;
+        console.log(currentTesters);
+        renderLinks();
+      };
+
+      function renderLinks() {
+        console.log("rendering");
+        if (Object.keys(currentTesters).length !== 0) {
+          console.log("object has props");
+          for (const [key, value] of Object.entries(currentTesters)) {
+            if (key.includes("client")) {
+              const newLink = document.createElement("a");
+              newLink.href = `${location.protocol}//${
+                location.host
+              }/answer?id=${key.split(":")[1]}`;
+              newLink.textContent =
+                key.split(":")[1] + value.data.split("|||")[0];
+
+              listOfTesters.appendChild(newLink);
+            }
+          }
+        } else {
+          listOfTesters.innerHTML += "Утопающих нет!";
+        }
+      }
+
+      ws.onclose = () => {
+        setTimeout(() => {
+          let newSocket = new WebSocket("wss://" + location.host);
+
+          newSocket.onopen = () => {
+            console.log("Соединение установлено");
+            ws.send(JSON.stringify(authMessage));
+          };
+          newSocket.onmessage = ws.onmessage;
+          newSocket.onclose = ws.onclose;
+
+          ws = newSocket;
+        }, 1500);
+      };
+    </script>
+  </body>
+</html>
