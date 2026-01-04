@@ -7,6 +7,9 @@ import fs from "fs";
 
 const router = new Router();
 
+router.get("/lms", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "lms.html"));
+});
 router.get("/admin-panel", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "admin-panel.html"));
 });
