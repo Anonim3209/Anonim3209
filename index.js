@@ -18,6 +18,7 @@ const DbUrl = process.env.DbURL;
 
 const server = http.createServer(app);
 
+app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use(cors());
 app.use("", router);
