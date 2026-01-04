@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Админ-панель</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        background: #f4f6f8;
+      }
+
+      .admin {
+        display: flex;
+        height: 100%;
+      }
+
+      /* ===== SIDEBAR ===== */
+      .sidebar {
+        width: 240px;
+        background: #1e293b;
+        color: #fff;
+        padding: 20px;
+      }
+
+      .sidebar h2 {
+        margin-bottom: 30px;
+        font-size: 20px;
+        text-align: center;
+      }
+
+      .menu a {
+        display: block;
+        padding: 12px 15px;
+        margin-bottom: 10px;
+        color: #cbd5e1;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: 0.2s;
+      }
+
+      .menu a:hover {
+        background: #334155;
+        color: #fff;
+      }
+
+      /* ===== CONTENT ===== */
+      .content {
+        flex: 1;
+        padding: 30px;
+      }
+
+      .page {
+        display: none;
+        background: #fff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .page h1 {
+        margin-bottom: 15px;
+        font-size: 24px;
+      }
+
+      .page p {
+        color: #475569;
+        line-height: 1.6;
+      }
+
+      /* ===== ROUTING ===== */
+      #help:target,
+      #saved:target {
+        display: block;
+      }
+
+      /* DEFAULT PAGE */
+      .page.default {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="admin">
+      <aside class="sidebar">
+        <h2>Admin Panel</h2>
+        <nav class="menu">
+          <a id="answer-link" href="">Помощь утопающим</a>
+          <a id="saved-questions" href="#saved">Сохранённые вопросы</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="page default">
+          <h1>Добро пожаловать .... в бойцовский клуб!</h1>
+          <p>Выберите раздел в меню слева.</p>
+        </section>
+      </main>
+    </div>
+    <script>
+      const answerLink = document.getElementById("answer-link");
+      const savedQuestionsLink = document.getElementById("saved-questions");
+      answerLink.href = `${location.protocol}//${location.host}/list-of-currentTesters`;
+      savedQuestionsLink.href = `${location.protocol}//${location.host}/questions`;
+    </script>
+  </body>
+</html>
