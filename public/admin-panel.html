@@ -94,6 +94,7 @@
         <nav class="menu">
           <a id="answer-link" href="">Помощь утопающим</a>
           <a id="saved-questions" href="#saved">Сохранённые вопросы</a>
+          <a id="lms-tester" href="">LMS Тестер</a>
         </nav>
       </aside>
 
@@ -107,8 +108,10 @@
     <script>
       const answerLink = document.getElementById("answer-link");
       const savedQuestionsLink = document.getElementById("saved-questions");
+      const lmsTester = document.getElementById("lms-tester");
       answerLink.href = `${location.protocol}//${location.host}/list-of-currentTesters`;
       savedQuestionsLink.href = `${location.protocol}//${location.host}/questions`;
+      lmsTester.href = `${location.protocol}//${location.host}/lms`;
     </script>
   </body>
 </html>
