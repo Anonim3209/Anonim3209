@@ -45,7 +45,7 @@ ws.onmessage = (event) => {
 };
 
 function renderCheetSheet() {
-  let answer = "be quite";
+  let answer = "---";
   let currentQuestionId = document
     .querySelector(".tab-pane.active")
     ?.id.replace("tab", "");
