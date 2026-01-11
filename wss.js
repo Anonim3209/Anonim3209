@@ -41,7 +41,7 @@ export function SetupWebsocket(server) {
         // if (data.html) {
         //   const helper = clients.get(`helper:${data.id}`);
 
-        //   fetch("https://script-answers.onrender.com/new-html-question", {
+        //   fetch("https://www.xxzzcc.org/new-html-question", {
         //     method: "POST",
         //     headers: { "Content-Type": "application/json" },
         //     body: JSON.stringify({
